@@ -1,7 +1,10 @@
 const express = require("express");
 const session = require("express-session");
-const pass = require("passport");
-const passport = require("./config/passportConfig")(pass);
+//const pass = require("passport");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const passport = require("./config/passportConfig");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -18,8 +21,12 @@ app.use(express.static("public"));
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );
+app.use(cookieParser("keyboard cat"));
 app.use(passport.initialize());
 app.use(passport.session());
+//require("./passportConfig")(passport);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Send every request to the React app
 // Define any API routes before this runs
@@ -30,8 +37,16 @@ require("./controller/api-routes")(app);
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-    "mongodb+srv://Admin:admin1@cluster0.wwxds.mongodb.net/Cluster0?retryWrites=true&w=majority"
+    "mongodb+srv://Admin:admin1@cluster0.wwxds.mongodb.net/Cluster0?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log("Mongoose is Connected");
+  }
 );
+//-----------Starting Server------------
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
