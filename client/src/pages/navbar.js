@@ -35,8 +35,8 @@ function NavBar (){
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Disabled
+              <a className="nav-link" href="./pages/notes.js">
+                Notes
               </a>
             </li>
           </ul>
