@@ -6,6 +6,7 @@ import Home from "./pages/home";
 import NavBar from "./pages/navbar";
 import "./App.css";
 import Post from "./pages/post";
+import Notes from "./pages/notes";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/post" component={Post} />
+          <Route exact path="/notes" component={Notes} />
         </div>
       </Router>
     );

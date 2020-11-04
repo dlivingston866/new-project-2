@@ -36,9 +36,9 @@ function NavBar() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="./pages/notes.js">
+            <Link className="nav-link" to="/notes">
               Notes
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
