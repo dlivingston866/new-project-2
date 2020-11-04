@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./landing.css";
+import "./landing.scss";
 
 function Landing() {
   const [registerUsername, setRegisterUsername] = useState("");

@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from "react";
 import axios from "axios";
+import "./notes.scss";
 
 function Notes() {
     const [notes, setNotes]= useState([]);
