@@ -30,7 +30,7 @@ function Landing() {
       url: "/login",
     }).then((res) => {
       console.log(res);
-      if (res.data.id !== null) {
+      if (res.data !== "No User Exists") {
         localStorage.setItem("id", res.data.id);
         localStorage.setItem("username", res.data.username);
         window.location = "/home";

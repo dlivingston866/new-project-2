@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Post() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [user, setUser] = useState(localStorage.getItem("id"));
+
+  useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      window.location = "/";
+    }
+  }, []);
 
   const post = () => {
     axios({

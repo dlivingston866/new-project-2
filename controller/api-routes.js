@@ -42,8 +42,10 @@ module.exports = function (app) {
       res.send("Post Saved");
     });
   });
-  app.get("/posts", (req, res) => {
-    Post.find()
+  app.get("/posts/:id", (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    Post.find({ user: id })
       .then((data) => {
         // if (err) throw err;
         console.log(data);
