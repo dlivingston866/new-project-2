@@ -1,49 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //import logo from "../logo.svg";
 import axios from "axios";
 import "./home.css";
 
 function Home() {
-  const [registerUsername, setRegisterUsername] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [loginUsername, setLoginUsername] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [data, setData] = useState(null);
-  const register = () => {
-    axios({
-      method: "POST",
-      data: {
-        username: registerUsername,
-        password: registerPassword,
-      },
-      withCredentials: true,
-      url: "/register",
-    }).then((res) => console.log(res));
-  };
-  const login = () => {
-    axios({
-      method: "POST",
-      data: {
-        username: loginUsername,
-        password: loginPassword,
-      },
-      withCredentials: true,
-      url: "/login",
-    }).then((res) => console.log(res));
-  };
-  const getUser = () => {
+  const [cloud, setCloud] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      window.location = "/";
+    }
+
     axios({
       method: "GET",
+
       withCredentials: true,
-      url: "/user",
-    }).then((res) => {
-      setData(res.data);
-      console.log(res.data);
+      url: "/posts/" + localStorage.getItem("id"),
+    }).then((resp) => {
+      console.log(resp);
+      if (Array.isArray(resp.data)) {
+        let cloudData = resp.data.reduce((a, b) => {
+          return a.title + " " + b.title + " " + a.body + " " + b.body;
+        });
+        axios({
+          method: "GET",
+          withCredentials: true,
+          url: "https://quickchart.io/wordcloud?text=" + cloudData,
+        }).then((res) => {
+          console.log(res);
+          setCloud(res);
+        });
+      }
     });
-  };
+  }, []);
   return (
     <div className="App">
-      <h1>Welcome to the Super-Duper Website</h1>
+      <h1>Welcome to Blogger</h1>
     </div>
   );
 }
