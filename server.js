@@ -37,7 +37,7 @@ require("./controller/api-routes")(app);
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-    "mongodb+srv://Admin:<password>@cluster0.wwxds.mongodb.net/<database>?retryWrites=true&w=majority",
+    "mongodb+srv://Admin:admin1@Cluster0.wwxds.mongodb.net/Cluster0?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

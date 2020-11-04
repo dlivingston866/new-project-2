@@ -1,0 +1,27 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+
+html {
+	height: 2000px;
+	background-color: red;
+	background-image: url(https://www.kayak.co.uk/magazine/wp-content/uploads/sites/78/2017/11/Most-photogenic-destinations-fjordland-new-zealand-800x500.jpg);
+	background-size: 100% auto;
+	background-position: top center;
+    background-attachment: fixed;
+}
+body {
+	height: 100%;
+	background-image: linear-gradient(rgb(162, 164, 238), transparent 70%);
+	background-size: 100% 100%;
+	mix-blend-mode: difference;
+    }
+$textColor: rgb(10,200,30);
+header {
+    background: lightseagreen;
+    display: flex;
+    justify-content: center;
+    color: $textColor;
+}
