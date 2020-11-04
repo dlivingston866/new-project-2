@@ -13,10 +13,21 @@ function Post() {
         title: title,
         body: body,
         user: user,
+        date: new Date(),
       },
       withCredentials: true,
       url: "/post",
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      axios({
+        method: "GET",
+
+        withCredentials: true,
+        url: "/posts",
+      }).then((resp) => {
+        console.log(resp);
+      });
+      console.log(res);
+    });
   };
 
   return (

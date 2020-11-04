@@ -5,6 +5,7 @@ const passportLocal = require("passport-local");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
+const Post = require("../models/post");
 
 module.exports = function (app) {
   app.post("/login", (req, res, next) => {
@@ -29,27 +30,28 @@ module.exports = function (app) {
       if (err) throw err;
       if (doc) res.send("User Already Exists");
       if (!doc) {
-        //const hashedPassword = await bcrypt.hash(req.body.password, 10);
         User.collection.insertOne(req.body).then((user) => {
           res.send("User Created");
         });
-        /* const newUser = new User({
-          username: req.body.username,
-          password: req.body.password,
-        });
-        await newUser.save();
-        res.send("User Created");*/
       }
     });
+  });
+  app.post("/post", (req, res) => {
+    Post.collection.insertOne(req.body, (err, doc) => {
+      if (err) throw err;
+      res.send("Post Saved");
+    });
+  });
+  app.get("/posts", (req, res) => {
+    Post.find()
+      .then((data) => {
+        // if (err) throw err;
+        console.log(data);
+        res.json(data);
+      })
+      .catch((err) => console.log(err));
   });
   app.get("/user", (req, res) => {
     res.send(req, user); // The req.user stores the entire user-------
   });
-
-  /*app.post("/register", passport.authenticate("local"), function (req, res) {
-    console.log(req);
-    res.json({
-      test: "string",
-    });
-  });*/
 };
