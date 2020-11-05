@@ -37,12 +37,16 @@ function Post() {
   };
 
   return (
-    <div>
+    <div style={{ margin: "0px auto" }}>
       <label>Title</label>
       <input type="text" onChange={(e) => setTitle(e.target.value)} />
+      <br></br>
       <label>Body</label>
       <textarea rows="5" onChange={(e) => setBody(e.target.value)}></textarea>
-      <button onClick={post}>Post</button>
+      <br></br>
+      <button className="btn btn-success" onClick={post}>
+        Post
+      </button>
     </div>
   );
 }
