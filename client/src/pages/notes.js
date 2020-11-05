@@ -27,10 +27,10 @@ function Notes() {
         <div data-role="header">
           <h2>Your notes</h2>
           {notes.map((post) => (
-            <ul>
-              <li>{post.title}</li>
-              <li>{post.body}</li>
-            </ul>
+            <div className="card blogcard">
+              <div className="card-header">{post.title}</div>
+              <div>{post.body}</div>
+            </div>
           ))}
         </div>
       </div>
